@@ -7,28 +7,34 @@ import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.time.Duration;
 import java.util.UUID;
 
 @Component
 public class Start implements ApplicationListener<ApplicationStartedEvent> {
 
+    private final StackSagaK8sLeaderElectionConfig config;
+
+    public Start(StackSagaK8sLeaderElectionConfig config) {
+        this.config = config;
+    }
 
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
         System.out.println("Start.init:6");
-        String appNamespace = "default";
-        String appName = "k8s-leader-election-custom-demo";
         String lockHolderIdentityName = UUID.randomUUID().toString(); // Anything unique
-        EndpointsLock lock = new EndpointsLock(appNamespace, appName, lockHolderIdentityName);
+        EndpointsLock lock = new EndpointsLock(
+                config.getAppNamespace(),
+                config.getAppName(),
+                lockHolderIdentityName
+        );
         LeaderElectionConfig leaderElectionConfig =
-                new LeaderElectionConfig(lock, Duration.ofMillis(15000),
-                        Duration.ofMillis(10000),
-                        Duration.ofMillis(5000)
+                new LeaderElectionConfig(lock, config.getLeaseDuration(),
+                        config.getRenewDeadline(),
+                        config.getRetryPeriod()
                 );
 
-        try (LeaderElector leaderElector = new LeaderElector(leaderElectionConfig)) {
+        try (final LeaderElector leaderElector = new LeaderElector(leaderElectionConfig)) {
             leaderElector.run(
                     () -> {
                         System.out.println("Do something when getting leadership.");
