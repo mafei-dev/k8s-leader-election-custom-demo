@@ -25,7 +25,8 @@ spec:
         app: k8s-leader-election-custom-demo
     spec:
       containers:
-        - image: mafeidev/k8s-leader-election-custom-demo:1.0.4
+        - image: mafeidev/k8s-leader-election-custom-demo:1.0.3
+          imagePullPolicy: Always
           name: k8s-leader-election-custom-demo
           ports:
             - containerPort: 8080
