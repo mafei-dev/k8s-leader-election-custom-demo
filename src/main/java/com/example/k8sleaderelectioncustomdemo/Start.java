@@ -14,12 +14,6 @@ import java.util.UUID;
 public class Start implements ApplicationListener<ApplicationStartedEvent> {
 
 
-//    @PostConstruct
-/*
-    public void init() {
-
-    }
-*/
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @SpringBootApplication()
-@Import(K8sConfig.class)
 @RestController
 public class K8sLeaderElectionCustomDemoApplication {
 
