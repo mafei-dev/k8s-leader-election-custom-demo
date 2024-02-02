@@ -1,0 +1,1 @@
+docker build -t mafeidev/k8s-leader-election-custom-demo-1:1.0.3 .
