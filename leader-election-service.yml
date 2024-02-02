@@ -1,30 +1,75 @@
 apiVersion: v1
-kind: ServiceAccount
+kind: ConfigMap
 metadata:
-  name: leader-election-sa
-  namespace: default
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: leader-election-role
-  namespace: default
-rules:
-  - apiGroups: [ "" ]
-    resources: [ "configmaps" ]
-    verbs: [ "get", "list", "update" ]
+  name: k8s-leader-election-custom-demo
+data: { }
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: leader-election-role-binding
-  namespace: default
+  creationTimestamp: null
+  labels:
+    app: k8s-leader-election-custom-demo
+  name: k8s-leader-election-custom-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-leader-election-custom-demo
+  strategy: { }
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: k8s-leader-election-custom-demo
+    spec:
+      containers:
+        - image: mafeidev/k8s-leader-election-custom-demo:1.0.4
+          name: k8s-leader-election-custom-demo
+          ports:
+            - containerPort: 8080
+          resources: { }
+status: { }
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: leader
+  labels:
+    app: k8s-leader-election-custom-demo
+    group: org.springframework.cloud
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - watch
+      - get
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - watch
+      - get
+      - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app: k8s-leader-election-custom-demo
+    group: org.springframework.cloud
+  name: leader
+roleRef:
+  apiGroup: ""
+  kind: Role
+  name: leader
 subjects:
   - kind: ServiceAccount
-    name: leader-election-sa
-    namespace: default
-roleRef:
-  kind: ClusterRole
-  name: leader-election-role
-  apiGroup: rbac.authorization.k8s.io
+    name: default
+    apiGroup: ""
