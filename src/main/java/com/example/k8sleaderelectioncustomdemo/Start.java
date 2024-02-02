@@ -22,6 +22,7 @@ public class Start implements ApplicationListener<ApplicationStartedEvent> {
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
         System.out.println("Start.init:6");
+        System.out.println("config = " + config);
         String lockHolderIdentityName = UUID.randomUUID().toString(); // Anything unique
         EndpointsLock lock = new EndpointsLock(
                 config.getAppNamespace(),
