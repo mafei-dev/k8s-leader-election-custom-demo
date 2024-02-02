@@ -17,7 +17,7 @@ public class Start implements ApplicationListener<ApplicationStartedEvent> {
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
-        System.out.println("Start.init");
+        System.out.println("Start.init:6");
         String appNamespace = "default";
         String appName = "k8s-leader-election-custom-demo";
         String lockHolderIdentityName = UUID.randomUUID().toString(); // Anything unique

@@ -15,6 +15,7 @@ import java.io.IOException;
 
 @SpringBootApplication()
 @RestController
+@Import(Start.class)
 public class K8sLeaderElectionCustomDemoApplication {
 
 

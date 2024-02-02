@@ -11,7 +11,7 @@ public class K8sConfig {
     @Bean
     @ConditionalOnMissingBean
     public ApiClient kubernetesApiClient() throws Exception {
-        System.out.println("K8sConfig.kubernetesApiClient");
+        System.out.println("K8sConfig.kubernetesApiClient:6");
         ApiClient apiClient = Config.defaultClient();
         io.kubernetes.client.openapi.Configuration.setDefaultApiClient(apiClient);
         return apiClient;
