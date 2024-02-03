@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 
 package com.example.k8sleaderelectioncustomdemo.lader;
 
@@ -32,9 +33,11 @@ import org.springframework.cloud.kubernetes.commons.leader.PodReadinessWatcher;
 import org.springframework.integration.leader.Candidate;
 import org.springframework.integration.leader.event.LeaderEventPublisher;
 
+*/
 /**
  * @author Gytis Trikleris
- */
+ *//*
+
 public class Fabric8LeadershipController extends LeadershipController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Fabric8LeadershipController.class);
@@ -179,3 +182,4 @@ public class Fabric8LeadershipController extends LeadershipController {
 	}
 
 }
+*/

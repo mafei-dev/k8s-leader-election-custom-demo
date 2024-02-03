@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 
 package com.example.k8sleaderelectioncustomdemo.lader;
 
@@ -35,9 +36,11 @@ import org.springframework.integration.leader.event.LeaderEventPublisher;
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 
+*/
 /**
  * @author Gytis Trikleris
- */
+ *//*
+
 @Configuration(proxyBeanMethods = false)
 //@EnableConfigurationProperties(LeaderProperties.class)
 @ConditionalOnBean(KubernetesClient.class)
@@ -104,3 +107,4 @@ public class Fabric8LeaderAutoConfiguration {
 	}
 
 }
+*/
