@@ -1,7 +1,5 @@
 package com.example.k8sleaderelectioncustomdemo;
 
-import com.example.k8sleaderelectioncustomdemo.lader.Fabric8LeaderAutoConfiguration;
-import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.openapi.ApiException;
 import io.kubernetes.client.openapi.apis.CoreV1Api;
 import io.kubernetes.client.openapi.models.V1Pod;
@@ -16,7 +14,7 @@ import java.io.IOException;
 
 @SpringBootApplication()
 @RestController
-@Import({Start.class, Fabric8LeaderAutoConfiguration.class})
+@Import({Start.class})
 public class K8sLeaderElectionCustomDemoApplication {
 
 
