@@ -1,7 +1,5 @@
 package com.example.k8sleaderelectioncustomdemo;
 
-import io.fabric8.kubernetes.client.KubernetesClient;
-import io.fabric8.kubernetes.client.KubernetesClientBuilder;
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.util.Config;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -19,13 +17,13 @@ public class K8sConfig {
         return apiClient;
     }
 
-    @Bean
+/*    @Bean
     @ConditionalOnMissingBean
     public KubernetesClient kubernetesClient() throws Exception {
         System.out.println("K8sConfig.kubernetesClient");
         KubernetesClientBuilder kubernetesClientBuilder = new KubernetesClientBuilder();
         return kubernetesClientBuilder.build();
-    }
+    }*/
 
 
 }
