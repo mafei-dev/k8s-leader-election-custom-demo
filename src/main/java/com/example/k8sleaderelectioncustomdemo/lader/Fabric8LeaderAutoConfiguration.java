@@ -50,8 +50,8 @@ public class Fabric8LeaderAutoConfiguration {
 		System.out.println("Fabric8LeaderAutoConfiguration.Fabric8LeaderAutoConfiguration");
 		leaderProperties = new LeaderProperties();
 		leaderProperties.setNamespace("default");
-		leaderProperties.setRole("leader");
-		leaderProperties.setCreateConfigMap(false);
+//		leaderProperties.setRole("leader");
+		leaderProperties.setCreateConfigMap(true);
 	}
 
 	@Bean
